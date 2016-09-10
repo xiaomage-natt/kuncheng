@@ -1,16 +1,15 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\WebLoginForm;
+use frontend\models\WebSignupForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
 /**
@@ -127,7 +126,7 @@ class SiteController extends BaseController
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new WebLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -189,7 +188,7 @@ class SiteController extends BaseController
      */
     public function actionSignup()
     {
-        $model = new SignupForm();
+        $model = new WebSignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {

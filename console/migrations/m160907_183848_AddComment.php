@@ -13,8 +13,8 @@ class m160907_183848_AddComment extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        //用户
-        $this->createTable('{{%comments}}', [
+
+        $this->createTable('{{%wishes}}', [
             'id' => Schema::TYPE_PK,
             'user_id' => $this->integer()->null(),
             'day' => $this->date()->null(),
@@ -28,8 +28,25 @@ class m160907_183848_AddComment extends Migration
             'updated_at' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "更新时间"',
         ], $tableOptions);
 
-        $this->createIndex('idxUserId', '{{%comments}}', 'user_id', true);
-        $this->createIndex('idxDay', '{{%comments}}', 'day', true);
+        $this->createIndex('idxUserId', '{{%wishes}}', 'user_id');
+        $this->createIndex('idxDay', '{{%wishes}}', 'day');
+        $this->createIndex('idxStar', '{{%wishes}}', ['status', 'star']);
+        $this->createIndex('idxCreate', '{{%wishes}}', ['status', 'created_at']);
+
+        $this->createTable('{{%wish_stars}}', [
+            'id' => Schema::TYPE_PK,
+            'user_id' => $this->integer()->null(),
+            'wish_id' => $this->integer()->null(),
+            'day' => $this->date()->null(),
+
+            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 1 COMMENT "状态"',
+            'created_at' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP COMMENT "创建时间"',
+            'updated_at' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "更新时间"',
+        ], $tableOptions);
+
+        $this->createIndex('idxUserId', '{{%wish_stars}}', 'user_id');
+        $this->createIndex('idxWishId', '{{%wish_stars}}', 'wish_id');
+        $this->createIndex('idxDay', '{{%wish_stars}}', 'day');
     }
 
     public function down()

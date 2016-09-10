@@ -63,10 +63,11 @@
 .bg-white {
   background: #ffffff;
 }
-html,
-body {
+html {
   height: 100%;
-  position: relative;
+}
+body {
+  min-height: 100%;
 }
 body {
   -webkit-overflow-scrolling: touch;
@@ -120,6 +121,9 @@ ng\:form {
   clip: rect(-1px, auto, auto, 0);
   -ms-zoom: 1;
 }
+body {
+  background: #151621;
+}
 .container {
   width: 640px;
   height: 100%;
@@ -127,6 +131,15 @@ ng\:form {
   font-family: "Huxiaobo";
   background: #151621;
   display: block;
+  zoom: 1;
+}
+.container:before,
+.container:after {
+  content: "";
+  display: table;
+}
+.container:after {
+  clear: both;
 }
 .container .button {
   background: url("../images/wap/button_bg.png") no-repeat;
@@ -178,6 +191,7 @@ ng\:form {
 .container .page-index .button-container .section {
   text-align: center;
   margin: 28px 0 0 0;
+  width: 100%;
 }
 .container .page-index .button-container .section .button {
   margin: 0 14px 0 14px;
@@ -186,6 +200,7 @@ ng\:form {
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding-bottom: 100px;
   background: url("../images/wap/common_banner.png") no-repeat left top;
 }
 .container .page-wish-list .wish-container {
@@ -243,7 +258,7 @@ ng\:form {
   color: #22212A;
 }
 .container .page-wish-list .wish-container .body {
-  position: absolute;
+  position: relative;
   border: 2px solid #AD8562;
   -webkit-border-top-right-radius: 20px;
   -webkit-border-bottom-right-radius: 20px;
@@ -307,19 +322,21 @@ ng\:form {
 }
 .container .page-wish-list .wish-container .body .item .right .good {
   display: block;
-  width: 30px;
+  width: 50px;
   height: 29px;
-  background: url("../images/wap/good.png") no-repeat;
+  background: url("../images/wap/good.png") no-repeat top center;
 }
 .container .page-wish-list .wish-container .body .item .right .num {
   display: block;
   color: #FFFEFE;
   margin-top: 6px;
+  text-align: center;
 }
 .container .page-my-wish {
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding-bottom: 50px;
   background: url("../images/wap/my_wish_bg.png") no-repeat left top;
 }
 .container .page-my-wish .my-wish-container {
@@ -411,6 +428,7 @@ ng\:form {
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding-bottom: 50px;
   background: url("../images/wap/common_banner.png") no-repeat left top;
 }
 .container .page-reward-list .reward-empty-container {
@@ -548,6 +566,7 @@ ng\:form {
   display: inline-block;
   width: 100%;
   height: 100%;
+  padding-bottom: 50px;
   background: url("../images/wap/common_banner.png") no-repeat left top;
 }
 .container .page-wish .wish-container {
@@ -613,4 +632,17 @@ ng\:form {
 }
 .container .page-wish .wish-container .body .input-group .submit {
   margin-top: 64px;
+}
+.rule-content {
+  font-size: 20px;
+  line-height: 35px;
+  color: #333333;
+}
+.rule-content p {
+  margin-bottom: 30px;
+}
+.rule-content .rule-logo {
+  height: 93px;
+  width: 100%;
+  background: url("../images/wap/rule_logo.png") no-repeat top center;
 }

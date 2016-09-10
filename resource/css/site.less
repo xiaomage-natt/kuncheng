@@ -1,4 +1,7 @@
 @import "common";
+body {
+  background: #151621;
+}
 
 .container {
   width: 640px;
@@ -7,7 +10,7 @@
   font-family: "Huxiaobo";
   background: #151621;
   display: block;
-
+  .clearfix();
   .button {
     background: url("../images/wap/button_bg.png") no-repeat;
     width: 244px;
@@ -63,6 +66,8 @@
       .section {
         text-align: center;
         margin: 28px 0 0 0;
+        width: 100%;
+
         .button {
           margin: 0 14px 0 14px;
         }
@@ -74,6 +79,7 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    padding-bottom: 100px;
 
     background: url("../images/wap/common_banner.png") no-repeat left top;
 
@@ -122,7 +128,7 @@
       }
 
       .body {
-        position: absolute;
+        position: relative;
         border: 2px solid #AD8562;
         .border-radius(20px, 20px, 20px, 20px);
         top: 50px;
@@ -174,14 +180,15 @@
 
             .good {
               display: block;
-              width: 30px;
+              width: 50px;
               height: 29px;
-              background: url("../images/wap/good.png") no-repeat;
+              background: url("../images/wap/good.png") no-repeat top center;
             }
             .num {
               display: block;
               color: #FFFEFE;
               margin-top: 6px;
+              text-align: center;
             }
           }
         }
@@ -193,6 +200,8 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    padding-bottom: 50px;
+
 
     background: url("../images/wap/my_wish_bg.png") no-repeat left top;
 
@@ -295,6 +304,8 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    padding-bottom: 50px;
+
 
     background: url("../images/wap/common_banner.png") no-repeat left top;
 
@@ -420,6 +431,8 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    padding-bottom: 50px;
+
 
     background: url("../images/wap/common_banner.png") no-repeat left top;
 
@@ -480,5 +493,21 @@
         }
       }
     }
+  }
+}
+
+.rule-content{
+  font-size: 20px;
+  line-height: 35px;
+  color: #333333;
+
+  p {
+    margin-bottom: 30px;
+  }
+
+  .rule-logo {
+    height: 93px;
+    width: 100%;
+    background: url("../images/wap/rule_logo.png") no-repeat top center;
   }
 }

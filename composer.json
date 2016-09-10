@@ -18,7 +18,10 @@
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "light/yii2-swagger": "^1.0"
+        "light/yii2-swagger": "^1.0",
+        "mootensai/yii2-enhanced-gii": "dev-master",
+        "rmccue/requests": "^1.6",
+        "kartik-v/yii2-datecontrol": "^1.9"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -1,5 +1,6 @@
 <?php
 /* @var $this \yii\web\View */
+/* @var $model \common\models\base\Wishes */
 use yii\helpers\Url;
 
 ?>
@@ -12,15 +13,15 @@ use yii\helpers\Url;
     <div class="my-wish-container">
         <div class="section-1">
             <div class="title">
-                <span class="name">刘＊＊</span><span class="mobile">188＊＊＊＊000</span>
+                <span class="name"><?= \common\helpers\CommonHelper::format_name($model->name) ?></span><span class="mobile"><?= \common\helpers\CommonHelper::format_mobile($model->mobile) ?></span>
             </div>
             <div class="content">
-                留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留
+                <?= $model->content ?>
             </div>
         </div>
         <div class="section-2">
             <div class="middle">
-                <span class="good"></span><span class="num">250</span>
+                <span class="good"></span><span class="num"><?= $model->star ?></span>
             </div>
         </div>
         <div class="section-3">

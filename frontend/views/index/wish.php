@@ -32,7 +32,7 @@ use yii\helpers\Url;
                 <input name="mobile" id="mobile" type="text">
             </div>
             <div class="input-group">
-                <a href="" class="button submit" id="submit"><span>提交心愿</span></a>
+                <a href="" class="button submit" id="submit" data-url="<?= Url::to(['submit-wish']) ?>"><span>提交心愿</span></a>
             </div>
         </div>
     </div>

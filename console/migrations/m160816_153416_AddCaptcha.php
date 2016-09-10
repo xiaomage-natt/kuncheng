@@ -24,7 +24,7 @@ class m160816_153416_AddCaptcha extends Migration
             'updated_at' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "更新时间"',
         ], $tableOptions);
 
-        $this->createIndex('idxMobile', '{{%users}}', 'mobile', true);
+        $this->createIndex('idxMobile', '{{%users}}', 'mobile');
 
         $this->createTable('{{%accounts}}', [
             'id' => Schema::TYPE_PK,
@@ -38,8 +38,8 @@ class m160816_153416_AddCaptcha extends Migration
             'updated_at' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "更新时间"',
         ], $tableOptions);
 
-        $this->createIndex('idxUserId', '{{%accounts}}', 'user_id', true);
-        $this->createIndex('idxAuthUid', '{{%accounts}}', ['auth_type', 'auth_uid'], true);
+        $this->createIndex('idxUserId', '{{%accounts}}', 'user_id');
+        $this->createIndex('idxAuthUid', '{{%accounts}}', ['auth_type', 'auth_uid']);
 
 
         $this->createTable('{{%user_profiles}}', [
@@ -55,7 +55,7 @@ class m160816_153416_AddCaptcha extends Migration
             'created_at' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP COMMENT "创建时间"',
             'updated_at' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "更新时间"',
         ], $tableOptions);
-        $this->createIndex('idxUserId', '{{%user_profiles}}', 'user_id', true);
+        $this->createIndex('idxUserId', '{{%user_profiles}}', 'user_id');
     }
 
     public function down()
