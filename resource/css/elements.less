@@ -1,0 +1,434 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -webkit-gradient(linear,
+  left bottom,
+  left top,
+  color-stop(0, @start),
+  color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom,
+  @start,
+  @stop);
+  background: -moz-linear-gradient(center bottom,
+  @start 0%,
+  @stop 100%);
+  background: -o-linear-gradient(@stop,
+  @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", @stop, @start));
+}
+
+.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
+  background: @color;
+  background: -webkit-gradient(linear,
+  left bottom,
+  left top,
+  color-stop(0, rgb(@start, @start, @start)),
+  color-stop(1, rgb(@stop, @stop, @stop)));
+  background: -ms-linear-gradient(bottom,
+  rgb(@start, @start, @start) 0%,
+  rgb(@stop, @stop, @stop) 100%);
+  background: -moz-linear-gradient(center bottom,
+  rgb(@start, @start, @start) 0%,
+  rgb(@stop, @stop, @stop) 100%);
+  background: -o-linear-gradient(rgb(@stop, @stop, @stop),
+  rgb(@start, @start, @start));
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", rgb(@stop, @stop, @stop), rgb(@start, @start, @start)));
+}
+
+.bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE) {
+  border-top: solid 1px @top-color;
+  border-left: solid 1px @left-color;
+  border-right: solid 1px @right-color;
+  border-bottom: solid 1px @bottom-color;
+}
+
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+.rounded(@radius: 2px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box);
+}
+
+.opacity(@opacity: 0.5) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+
+.transition-duration(@duration: 0.2s) {
+  -moz-transition-duration: @duration;
+  -webkit-transition-duration: @duration;
+  -o-transition-duration: @duration;
+  transition-duration: @duration;
+}
+
+.transform(...) {
+  -webkit-transform: @arguments;
+  -moz-transform: @arguments;
+  -o-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+
+.rotation(@deg:5deg) {
+  .transform(rotate(@deg));
+}
+
+.scale(@ratio:1.5) {
+  .transform(scale(@ratio));
+}
+
+.transition(@duration:0.2s, @ease:ease-out) {
+  -webkit-transition: all @duration @ease;
+  -moz-transition: all @duration @ease;
+  -o-transition: all @duration @ease;
+  transition: all @duration @ease;
+}
+
+.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+  -webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+
+.box-shadow(@arguments) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+.box-sizing(@sizing: border-box) {
+  -ms-box-sizing: @sizing;
+  -moz-box-sizing: @sizing;
+  -webkit-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+
+.user-select(@argument: none) {
+  -webkit-user-select: @argument;
+  -moz-user-select: @argument;
+  -ms-user-select: @argument;
+  user-select: @argument;
+}
+
+.columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
+  -moz-column-width: @colwidth;
+  -moz-column-count: @colcount;
+  -moz-column-gap: @colgap;
+  -moz-column-rule-color: @columnRuleColor;
+  -moz-column-rule-style: @columnRuleStyle;
+  -moz-column-rule-width: @columnRuleWidth;
+  -webkit-column-width: @colwidth;
+  -webkit-column-count: @colcount;
+  -webkit-column-gap: @colgap;
+  -webkit-column-rule-color: @columnRuleColor;
+  -webkit-column-rule-style: @columnRuleStyle;
+  -webkit-column-rule-width: @columnRuleWidth;
+  column-width: @colwidth;
+  column-count: @colcount;
+  column-gap: @colgap;
+  column-rule-color: @columnRuleColor;
+  column-rule-style: @columnRuleStyle;
+  column-rule-width: @columnRuleWidth;
+}
+
+.translate(@x:0, @y:0) {
+  .transform(translate(@x, @y));
+}
+
+.background-clip(@argument: padding-box) {
+  -moz-background-clip: @argument;
+  -webkit-background-clip: @argument;
+  background-clip: @argument;
+}
+
+.coupon-detail(@background:url("../../service/images/weizhang-couon.png") no-repeat,@height:222px,@width:582px,@margin:30px auto 0) {
+  height: @height;
+  width: @width;
+  background: @background;
+  margin: @margin;
+}
+
+.coupon-detail-div(@display:table-cell,@height:222px,@vertical-align:middle) {
+  display: @display;
+  height: @height;
+  vertical-align: @vertical-align;
+}
+
+.coupon-price(@width:220px,@height:222px,@font-size:72px,@text-align:center,@color:#ff7e00) {
+  width: @width;
+  height: @height;
+  font-size: @font-size;
+  text-align: @text-align;
+  color: @color;
+}
+
+.coupon-price-logo(@font-size:36px,@color:#ff7e00,@margin:0 10px 0 0) {
+  font-size: @font-size;
+  color: @color;
+  margin: @margin;
+}
+
+.coupon-price-content(@width:362px,@height:222px,@margin:0) {
+  width: @width;
+  height: @height;
+  margin: @margin;
+}
+
+.coupon-price-content-h1(@font-size:24px,@line-height:40px,@margin:20px 0 0 0) {
+  font-size: @font-size;
+  line-height: @line-height;
+  margin: @margin;
+}
+
+.coupon-price-content-p(@font-size:18px,@line-height:30px) {
+  font-size: @font-size;
+  line-height: @line-height;
+}
+
+.coupon-price-content-detail(@font-size:24px,@text-decoration:underline,@float:right,@margin:0 30px 0 0) {
+  font-size: @font-size;
+  text-decoration: @text-decoration;
+  float: @float;
+  margin: @margin;
+}
+
+.button-link(@display:block,@background:#ff7e00,@color:white,@border-radius:10px,@margin:0 auto,@text-align:center,@width:520px,@height:88px,@line-height:88px,@font-size:30px,@cursor:pointer) {
+  display: @display;
+  background: @background;
+  color: @color;
+  border-radius: @border-radius;
+  text-align: @text-align;
+  height: @height;
+  width: @width;
+  margin: @margin;
+  line-height: @line-height;
+  font-size: @font-size;
+  cursor: @cursor;
+}
+
+.unite-ul(@background:white,@margin:0 0 30px 0,@padding:0 0 0 30px) {
+  background: @background;
+  margin: @margin;
+  padding: @padding;
+}
+
+.unite-ul-li(@height:88px,@line-height:88px,@font-size:30px,@background:url("../../images/ddd_line.png") repeat-x,@margin:0,@padding:0) {
+  height: @height;
+  line-height: @line-height;
+  font-size: @font-size;
+  background: @background;
+  padding: @padding;
+  margin: @margin;
+}
+
+.unite-ul-li-span(@display:block,@margin:0 20px 0 0,@padding:0,@background:url("../../price/images/right.png") no-repeat right center) {
+  display: @display;
+  margin: @margin;
+  background: @background;
+  padding: @padding;
+}
+
+.unite-ul-li-input(@border:none,@background:none,@font-size:30px,@margin:0 110px 0 0,@float:right) {
+  background: @background;
+  border: @border;
+  margin: @margin;
+  font-size: @font-size;
+  float: @float;
+}
+
+.button-jump(@position:fixed,@bottom:0,@padding:0 80px,@left:0) {
+  position: @position;
+  padding: @padding;
+  bottom: @bottom;
+  left: @left;
+}
+
+.button-jump-div(@width:240px,@height:128px,@float:left,@background:url("../../price/images/ellipse.png") no-repeat center,@text-align:center) {
+  width: @width;
+  height: @height;
+  float: @float;
+  background: @background;
+  text-align: @text-align;
+}
+
+.hint(@font-size:24px,@margin:30px,@color:#444) {
+  font-size: @font-size;
+  margin: @margin;
+  color: @color;
+}
+
+.unite-div(@padding:0 30px 0 30px,@font-size:30px,@margin:30px 0 0 0,@height:88px,@line-height:88px,@background:white) {
+  padding: @padding;
+  font-size: @font-size;
+  margin: @margin;
+  height: @height;
+  line-height: @line-height;
+  background: @background;
+}
+
+.subtitle(@margin:36px 0 20px 30px,@font-size:24px) {
+  margin: @margin;
+  font-size: @font-size;
+}
+
+.confirm-order(@position:fixed,@left:0,@right:0,@bottom:0,@height:88px,@line-height:88px,@margin:0 auto,@width:640px) {
+  position: @position;
+  left: @left;
+  right: @right;
+  bottom: @bottom;
+  height: @height;
+  line-height: @line-height;
+  margin: @margin;
+  width: @width;
+}
+
+.confirm-order-pay(@background:#f76900,@width:200px,@font-size:30px,@color:#fff,@text-align:center,@float:left) {
+  background: @background;
+  width: @width;
+  font-size: @font-size;
+  color: @color;
+  text-align: @text-align;
+  float: @float;
+}
+
+.confirm-order-price(@background:#ff7e00,@width:410px,@font-size:30px,@text-align:right,@float:left,@color:white,@padding:0 30px 0 0) {
+  background: @background;
+  width: @width;
+  font-size: @font-size;
+  text-align: @text-align;
+  float: @float;
+  color: @color;
+  padding: @padding;
+}
+
+.no-data-div(@margin:300px auto 0,@text-align:center,@width:640px) {
+  margin: @margin;
+  text-align: @text-align;
+  width: @width;
+}
+
+.no-data-img(@height:200px,@width:200px,@margin:0 auto) {
+  height: @height;
+  width: @width;
+  margin: @margin;
+}
+
+.no-data-p(@font-size:30px,@margin:50px 0 0) {
+  font-size: @font-size;
+  margin: @margin;
+}
+
+.floating-window(@position:fixed,@top:0,@left:0,@bottom:0,@right:0,@background:url("../../price/images/black70.png")) {
+  position: @position;
+  top: @top;
+  left: @left;
+  bottom: @bottom;
+  right: @right;
+  background: @background;
+}
+
+//外部架构框函数
+.unite-container(@width:640px,@height:100%,@margin:0 auto,@z-index:1) {
+  width: @width;
+  height: @height;
+  margin: @margin;
+  z-index: @z-index;
+}
+
+.bottom-absolute(@position:absolute,@height:88px,@padding:0 0 30px 0,@z-index:100,@bottom:0,@left:0,@width:100%) {
+  position: @position;
+  height: @height;
+  padding: @padding;
+  z-index: @z-index;
+  bottom: @bottom;
+  left: @left;
+  width: @width;
+}
+
+.top-absolute(@position:absolute,@height:88px,@padding:30px 0 0,@z-index:1000,@top:0,@left:0,@width:100%) {
+  position: @position;
+  height: @height;
+  padding: @padding;
+  z-index: @z-index;
+  top: @top;
+  left: @left;
+  width: @width;
+}
+
+.content-absolute(@position:absolute,@height:auto,@padding:30px 0 0,@z-index:500,@top:0,@bottom:0,@left:0,@width:100%,@overflow:auto) {
+  position: @position;
+  height: @height;
+  padding: @padding;
+  z-index: @z-index;
+  top: @top;
+  bottom: @bottom;
+  left: @left;
+  width: @width;
+  overflow: @overflow;
+}
+
+.toast-border(@position:fixed,@margin:auto,@left:0,@right:0,@top:0,@bottom:0,@width:640px,@text-align:center,@height:50px) {
+  position: @position;
+  margin: @margin;
+  left: @left;
+  right: @right;
+  top: @top;
+  bottom: @bottom;
+  width: @width;
+  text-align: @text-align;
+  height: @height;
+}
+
+.toast-content(@border-radius:10px,@display:inline-block,@height:50px,@line-height:50px,@padding:0 15px,@background:#444,@color:#fff,@font-size:24px) {
+  border-radius: @border-radius;
+  display: @display;
+  height: @height;
+  line-height: @line-height;
+  padding: @padding;
+  background: @background;
+  color: @color;
+  font-size: @font-size;
+}
+
+.clearfix {
+  zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

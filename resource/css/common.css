@@ -1,0 +1,122 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+@font-face {
+  font-family: 'Huxiaobo';
+  src: url('../fonts/huxiaobo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Huxiaobo", Arial;
+  font-weight: normal;
+  color: #444444;
+  text-decoration: none;
+  list-style: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-text-size-adjust: none;
+}
+*:focus {
+  outline: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl {
+  clear: both;
+}
+.show {
+  display: block;
+}
+.orange {
+  color: #ff7e00;
+}
+.gray {
+  color: #888888;
+}
+.hide {
+  display: none;
+}
+.border {
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+.bg-white {
+  background: #ffffff;
+}
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+body {
+  -webkit-overflow-scrolling: touch;
+}
+#toast-out-border {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 1000000;
+}
+#toast-out-border .toast-border {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 640px;
+  text-align: center;
+  height: 50px;
+}
+#toast-out-border .toast-border .toast-content {
+  border-radius: 10px;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  background: #444444;
+  color: #ffffff;
+  font-size: 24px;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide {
+  display: none !important;
+}
+ng\:form {
+  display: block;
+}
+.ng-animate-start {
+  clip: rect(0, auto, auto, 0);
+  -ms-zoom: 1.0001;
+}
+.ng-animate-active {
+  clip: rect(-1px, auto, auto, 0);
+  -ms-zoom: 1;
+}
