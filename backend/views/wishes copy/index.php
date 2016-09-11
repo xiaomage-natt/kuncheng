@@ -35,7 +35,7 @@ $this->registerJs($search);
         'content',
         'star',
         [
-            'attribute' => 'status',
+          'attribute' => 'status',
             'class' => \kartik\grid\BooleanColumn::className()
         ],
         [

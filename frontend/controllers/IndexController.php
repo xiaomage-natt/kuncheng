@@ -51,7 +51,7 @@ class IndexController extends Controller
     public function actionMyWish()
     {
         /** @var Wishes $wishes */
-        $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->andWhere(['IN', 'status', [Wishes::ACTIVE, Wishes::CHECK]])->one();
+        $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->andWhere(['IN', 'status', [Wishes::ACTIVE, Wishes::CHECK]])->orderBy('id desc')->one();
         if (!$wishes) {
             return $this->redirect(['wish']);
         } else {

@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\base\WIshes;
+use common\models\base\Wishes;
 
 /**
- * app\models\WishesSearch represents the model behind the search form about `common\models\base\WIshes`.
+ * app\models\WishesSearch represents the model behind the search form about `common\models\base\Wishes`.
  */
- class WishesSearch extends WIshes
+ class WishesSearch extends Wishes
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ use common\models\base\WIshes;
      */
     public function search($params)
     {
-        $query = WIshes::find();
+        $query = Wishes::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

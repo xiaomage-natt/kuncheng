@@ -23,11 +23,10 @@ use mootensai\behaviors\UUIDBehavior;
 class Wishes extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
-
     const ACTIVE = 10;
     const DELETE = 0;
     const CHECK = 1;
+
     /**
      * @inheritdoc
      */
@@ -38,10 +37,7 @@ class Wishes extends \yii\db\ActiveRecord
             [['day', 'created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 64],
             [['mobile'], 'string', 'max' => 16],
-            [['content'], 'string', 'max' => 256],
-            [['user_id'], 'unique'],
-            [['day'], 'unique'],
-            [['name', 'mobile', 'content'], 'required']
+            [['content'], 'string', 'max' => 256]
         ];
     }
     

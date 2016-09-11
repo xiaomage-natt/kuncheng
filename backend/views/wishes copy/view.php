@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\base\Wishes */
+/* @var $model common\models\base\WIshes */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Wishes'), 'url' => ['index']];

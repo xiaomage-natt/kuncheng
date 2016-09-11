@@ -3,14 +3,14 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\base\Wishes;
+use common\models\base\WIshes;
 use app\models\WishesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * WishesController implements the CRUD actions for Wishes model.
+ * WishesController implements the CRUD actions for WIshes model.
  */
 class WishesController extends Controller
 {
@@ -40,7 +40,7 @@ class WishesController extends Controller
     }
 
     /**
-     * Lists all Wishes models.
+     * Lists all WIshes models.
      * @return mixed
      */
     public function actionIndex()
@@ -55,7 +55,7 @@ class WishesController extends Controller
     }
 
     /**
-     * Displays a single Wishes model.
+     * Displays a single WIshes model.
      * @param integer $id
      * @return mixed
      */
@@ -68,13 +68,13 @@ class WishesController extends Controller
     }
 
     /**
-     * Creates a new Wishes model.
+     * Creates a new WIshes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Wishes();
+        $model = new WIshes();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -86,7 +86,7 @@ class WishesController extends Controller
     }
 
     /**
-     * Updates an existing Wishes model.
+     * Updates an existing WIshes model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +105,7 @@ class WishesController extends Controller
     }
 
     /**
-     * Deletes an existing Wishes model.
+     * Deletes an existing WIshes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,7 +113,7 @@ class WishesController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->updateAttributes([
-            'status' => Wishes::ACTIVE,
+            'status' => Wishes::DELETE
         ]);
 
         return $this->redirect(['index']);
@@ -121,15 +121,15 @@ class WishesController extends Controller
 
     
     /**
-     * Finds the Wishes model based on its primary key value.
+     * Finds the WIshes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Wishes the loaded model
+     * @return WIshes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Wishes::findOne($id)) !== null) {
+        if (($model = WIshes::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

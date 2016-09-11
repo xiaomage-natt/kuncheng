@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\base\Wishes */
+/* @var $model common\models\base\WIshes */
 
 $this->title = Yii::t('app', 'Create Wishes');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Wishes'), 'url' => ['index']];
