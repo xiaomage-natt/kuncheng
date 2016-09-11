@@ -39,7 +39,7 @@ class m160816_153416_AddCaptcha extends Migration
         ], $tableOptions);
 
         $this->createIndex('idxUserId', '{{%accounts}}', 'user_id');
-        $this->createIndex('idxAuthUid', '{{%accounts}}', ['auth_type', 'auth_uid']);
+        $this->createIndex('idxAuthUid', '{{%accounts}}', ['auth_type', 'auth_uid'], false);
 
 
         $this->createTable('{{%user_profiles}}', [

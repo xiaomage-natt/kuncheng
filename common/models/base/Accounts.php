@@ -34,10 +34,6 @@ class Accounts extends \yii\db\ActiveRecord
             [['auth_type'], 'string', 'max' => 255],
             [['auth_uid'], 'string', 'max' => 64],
             [['auth_token'], 'string', 'max' => 256],
-            [['auth_uid'], 'unique'],
-            [['auth_type'], 'unique'],
-            [['user_id'], 'unique'],
-            [['auth_type', 'auth_uid'], 'unique', 'targetAttribute' => ['auth_type', 'auth_uid'], 'message' => 'The combination of Auth Type and Auth Uid has already been taken.']
         ];
     }
     

@@ -16,13 +16,13 @@ class AppAsset extends AssetBundle
         'resource/css/ui.css',
     ];
     public $js = [
-        'resource/js/base.pack.js',
+//        'resource/js/base.pack.js',
         'resource/js/jquery.fancybox.pack.js',
         'resource/js/message.js',
         'resource/js/main.js',
     ];
     public $depends = [
-//        'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
 }

@@ -633,6 +633,82 @@ body {
 .container .page-wish .wish-container .body .input-group .submit {
   margin-top: 64px;
 }
+.container .site-login,
+.container .site-signup {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.container .site-login p,
+.container .site-signup p {
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+}
+.container .site-login h1,
+.container .site-signup h1 {
+  color: #ffffff;
+  font-size: 30px;
+  text-align: center;
+  line-height: 55px;
+}
+.container .site-login div,
+.container .site-signup div {
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+}
+.container .site-login .form-group,
+.container .site-signup .form-group {
+  margin: 20px 0 35px 0;
+  text-align: center;
+}
+.container .site-login .form-group textarea,
+.container .site-signup .form-group textarea,
+.container .site-login .form-group input,
+.container .site-signup .form-group input {
+  border: 2px solid #AD8562;
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  -moz-border-radius-topleft: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 30px;
+  font-size: 20px;
+  color: #ffffff;
+  background: none;
+  box-sizing: border-box;
+}
+.container .site-login .form-group textarea,
+.container .site-signup .form-group textarea {
+  width: 556px;
+  height: 151px;
+}
+.container .site-login .form-group input,
+.container .site-signup .form-group input {
+  width: 556px;
+  height: 71px;
+}
+.container .site-login .form-group label,
+.container .site-signup .form-group label {
+  font-size: 30px;
+  color: #AD8562;
+  display: block;
+  text-align: center;
+  margin: 0 0 13px 0;
+}
 .rule-content {
   font-size: 20px;
   line-height: 35px;

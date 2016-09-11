@@ -12,6 +12,7 @@ class WebSignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $type = 'web';
 
 
     /**
@@ -29,7 +30,6 @@ class WebSignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-
         ];
     }
 
@@ -43,7 +43,7 @@ class WebSignupForm extends Model
     public function validateUsername($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            if (Accounts::find()->where(['auth_type' => 'web', 'auth_uid' => $this->username])->one()) {
+            if (Accounts::find()->where(['auth_type' => $this->type, 'auth_uid' => $this->username])->one()) {
                 $this->addError($attribute, '用户已经存在.');
             }
         }
@@ -65,11 +65,13 @@ class WebSignupForm extends Model
             return null;
         } else {
             $accounts = new Accounts();
-            $accounts->auth_type = 'web';
+            $accounts->auth_type = $this->type;
             $accounts->auth_uid = $this->username;
             $accounts->auth_token = \Yii::$app->security->generatePasswordHash($this->password);
             $accounts->user_id = $user->id;
-            return $accounts->save() ? $user : null;
+            $save = $accounts->save();
+
+            return $save ? $user : null;
         }
     }
 }
