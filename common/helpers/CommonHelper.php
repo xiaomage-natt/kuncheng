@@ -51,4 +51,14 @@ class CommonHelper
         }
         return false;
     }
+
+    /**
+     * @return string
+     */
+    public static function currentProtocol()
+    {
+        // 注意 URL 一定要动态获取.
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 || $_SERVER['SERVER_PORT'] == 8443) ? "https://" : "http://";
+        return $protocol;
+    }
 }

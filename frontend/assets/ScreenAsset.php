@@ -25,6 +25,7 @@ class ScreenAsset extends AssetBundle
     ];
     public $js = [
         'resource/js/screen.js',
+        'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'
     ];
     public $depends = [
     ];

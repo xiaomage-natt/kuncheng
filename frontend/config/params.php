@@ -2,7 +2,7 @@
 return [
     'adminEmail' => 'admin@example.com',
     'wechat' => [
-        'appid' => 'wx6b81e867f9c2d4e4',
-        'secret' => '2c3730fade34d239a2cb9a8f7ab24c57',
+        'appid' => 'wxdf945ebd1c12106e',
+        'secret' => 'a91eb856bb4e2d5e38c96d79ff78c6dc',
     ]
 ];
