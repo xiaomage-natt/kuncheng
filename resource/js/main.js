@@ -13,9 +13,9 @@ $(function () {
         if (content == undefined || content == "") {
             message("心愿不能为空");
         } else if (name == undefined || name == "") {
-            message("心愿不能为空");
-        } else if (mobile == undefined || mobile == "") {
-            message("心愿不能为空");
+            message("姓名不能为空");
+        } else if (mobile == undefined || mobile == "" || !/^1[3,5,8,7]\d{9}$/.exec(mobile)) {
+            message("请填写正确的手机号");
         } else {
 
             var k = $("meta[name=csrf-param]").attr("content");
@@ -38,8 +38,20 @@ $(function () {
     });
 
 
+    var page = 1;
+    var type = 'star';
+    var tabContainer = $("#tab-container");
+    var wishList = $("#wish-list");
+
     function getStarList() {
+        $("#more").show();
         $.get(wishList.data('url'), {page: page, type: 'star'}, function (res) {
+            if (res.data.length < 20) {
+                $("#more").hide();
+            } else {
+                $("#more").show();
+            }
+
             $.map(res.data, function (item) {
                 var html = '<div class="item">' +
                     '<div class="left">' +
@@ -57,13 +69,22 @@ $(function () {
                     '</span></div>' +
                     '</div>';
 
-                wishList.append(html);
+                $("#more").before(html);
             });
+
         }, 'json');
     }
 
     function getNewList() {
+        $("#more").show();
         $.get(wishList.data('url'), {page: page, type: 'new'}, function (res) {
+            if (res.data.length < 20) {
+                $("#more").hide();
+            } else {
+                $("#more").show();
+            }
+
+
             $.map(res.data, function (item) {
                 var html = '<div class="item">' +
                     '<div class="left">' +
@@ -81,14 +102,21 @@ $(function () {
                     '</span></div>' +
                     '</div>';
 
-                wishList.append(html);
+                $("#more").before(html);
             });
         }, 'json');
     }
 
+    wishList.on('click', '#more', function () {
+        if (type == 'star') {
+            page++;
+            getStarList();
+        } else if (type == 'new') {
+            page++;
+            getNewList();
+        }
+    });
 
-    var page = 1;
-    var wishList = $("#wish-list");
     if (wishList) {
         getStarList();
 
@@ -110,7 +138,6 @@ $(function () {
         });
     }
 
-    var tabContainer = $("#tab-container");
     if (tabContainer) {
         tabContainer.on("click", '.tab', function (res) {
             var self = $(this);
@@ -120,11 +147,14 @@ $(function () {
             if (wishList) {
                 wishList.empty();
 
+                type = self.data('type');
                 if (self.data('type') == 'star') {
                     page = 1;
+                    wishList.append('<div class="more" id="more">加载更多</div>');
                     getStarList();
                 } else if (self.data('type') == 'new') {
                     page = 1;
+                    wishList.append('<div class="more" id="more">加载更多</div>');
                     getNewList();
                 }
             }
@@ -144,7 +174,7 @@ $(function () {
         rule_html.append('<div class="rule-logo"></div>');
         dialog("活动规则", rule_html);
     });
-    
+
     $('.redirect-back').click(function () {
         history.go(-1);
     })

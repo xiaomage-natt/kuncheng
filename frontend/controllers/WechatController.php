@@ -67,7 +67,7 @@ class WechatController extends Controller
         $accounts = Accounts::find()->where(['auth_type' => $this->auth_type, 'auth_uid' => $response['openid']])->one();
         if (!$accounts) {
             $users = new Users();
-            $users->name = $response['nickname'];
+//            $users->name = $response['nickname'];
             $users->save();
 
             $accounts = new Accounts();
@@ -92,7 +92,7 @@ class WechatController extends Controller
         $userProfiles->province = (string)$response['province'];
         $userProfiles->city = (string)$response['city'];
         $userProfiles->thumb = (string)$response['headimgurl'];
-        $userProfiles->nickname = (string)$response['nickname'];
+//        $userProfiles->nickname = (string)$response['nickname'];
         $userProfiles->save();
 
         $wechatLoginForm = new WechatLoginForm();

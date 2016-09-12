@@ -19,6 +19,7 @@
         <div class="body" id="wish-list" data-url="<?= \yii\helpers\Url::to(['wishes']) ?>"
              data-star-url="<?= \yii\helpers\Url::to(['star']) ?>">
 
+            <div class="more" id="more">加载更多</div>
         </div>
     </div>
 </div>
