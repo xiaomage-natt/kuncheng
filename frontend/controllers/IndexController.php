@@ -51,7 +51,7 @@ class IndexController extends Controller
     public function actionMyWish()
     {
         /** @var Wishes $wishes */
-        $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->andWhere(['IN', 'status', [Wishes::ACTIVE, Wishes::CHECK]])->orderBy('id desc')->one();
+        $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->orderBy('created_at desc')->one();
         if (!$wishes) {
             return $this->redirect(['wish']);
         } else {
@@ -64,6 +64,15 @@ class IndexController extends Controller
                 return $this->render("my-wish-empty");
             }
         }
+    }
+
+    public function actionShareWish($id)
+    {
+        /** @var Wishes $wishes */
+        $wishes = Wishes::find()->where(['id' => $id])->one();
+        return $this->render("share-wish", [
+            'model' => $wishes
+        ]);
     }
 
     public function actionRewardList()
@@ -120,6 +129,10 @@ class IndexController extends Controller
         return $this->returnJson($wishes);
     }
 
+    public static $mingan = [
+        "勃起", "操", "操逼", "操弄", "操死", "操我", "操穴", "插进插出", "插入", "插死你", "插穴", "大炮", "打炮", "奶子", "兽交", "强奸", "TMD", "你妈逼", "操你妈逼", "操你妈", "他妈的", "傻逼", "逼", "习近平", "李克强", "中南海", "毛泽东", "文化大革命", "四人帮", "中华民国", "台独", "藏独", "分裂", "偷渡", "尖阁列岛", "斯普拉特利群岛", "怕拉塞尔群岛", "北方四岛", "民族分裂"
+    ];
+
     public function actionSubmitWish()
     {
         if (date("Y-m-d") > Yii::$app->params['end_date']) {
@@ -127,13 +140,19 @@ class IndexController extends Controller
         } else {
 
             /** @var Wishes $wishes */
-            $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->andWhere(['IN', 'status', [Wishes::ACTIVE, Wishes::CHECK]])->one();
-            if (!$wishes) {
+            $wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->orderBy("created_at desc")->one();
+            if (!$wishes || $wishes->status != Wishes::ACTIVE) {
                 $wishes = new Wishes();
                 $wishes->load(Yii::$app->request->post(), '');
                 $wishes->user_id = Yii::$app->getUser()->id;
                 $wishes->day = date("Y-m-d");
                 $wishes->status = Wishes::ACTIVE;
+
+                foreach (self::$mingan as $item) {
+                    if (strpos($wishes->content, $item) !== false) {
+                        return $this->returnJson([], false, "您发布的内容包含敏感词汇,请修改后发布!");
+                    }
+                }
 
                 if ($wishes->save()) {
                     return $this->returnJson([
@@ -207,5 +226,12 @@ class IndexController extends Controller
                 'data' => $data,
                 'callback' => $callback
             );
+    }
+
+    public function actionStatistics()
+    {
+        $post = Yii::$app->request->post();
+        $requests_Response = \Requests::post("http://218.244.145.245/api/contact/form?campaign_id=kunchengxuyuan&token=imtravelzoo", [], $post);
+        echo $requests_Response->body;exit;
     }
 }

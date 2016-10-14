@@ -1,4 +1,5 @@
 @import "common";
+
 body {
   background: #151621;
 }
@@ -29,12 +30,12 @@ body {
   }
 
   .redirect-back {
-    width: 72px;
-    height: 21px;
+    width: 110px;
+    height: 37px;
     position: fixed;
     background: url("../images/wap/redirect_back.png") no-repeat;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
   }
   .activity-rule {
     width: 55px;
@@ -42,7 +43,7 @@ body {
     background: url("../images/wap/rule_bg.png") no-repeat;
     position: fixed;
 
-    top: 10px;
+    top: 15px;
     right: 0;
   }
   .banner-content {
@@ -58,9 +59,21 @@ body {
     display: inline-block;
     width: 100%;
     height: 100%;
+    position: relative;
 
-    background: url("../images/wap/index_bg.png") no-repeat left -128px;
+    background: url("../images/wap/index_bg.png") no-repeat left top;
 
+    .logo{
+      position: absolute;
+      top:10px;
+      right: 10px;
+      width: 129px;
+      height: 74px;
+      background: url("../images/wap/logo.png") no-repeat;
+    }
+    .activity-rule {
+      top: 90px;
+    }
     .button-container {
       margin: 778px 0 35px 0;
       .section {
@@ -210,7 +223,6 @@ body {
     height: 100%;
     padding-bottom: 50px;
 
-
     background: url("../images/wap/my_wish_bg.png") no-repeat left top;
 
     .my-wish-container {
@@ -314,10 +326,7 @@ body {
     height: 100%;
     padding-bottom: 50px;
 
-
     background: url("../images/wap/common_banner.png") no-repeat left top;
-
-
 
     .reward-empty-container {
       display: inline-block;
@@ -443,7 +452,6 @@ body {
     height: 100%;
     padding-bottom: 50px;
 
-
     background: url("../images/wap/common_banner.png") no-repeat left top;
 
     .wish-container {
@@ -469,7 +477,7 @@ body {
 
       .body {
         .input-group {
-          margin:20px 0 35px 0;
+          margin: 20px 0 35px 0;
           text-align: center;
 
           textarea, input {
@@ -479,7 +487,7 @@ body {
             font-size: 20px;
             color: #ffffff;
             background: none;
-            box-sizing:border-box;
+            box-sizing: border-box;
           }
           textarea {
             width: 556px;
@@ -497,7 +505,7 @@ body {
             margin: 0 0 13px 0;
           }
 
-          .submit  {
+          .submit {
             margin-top: 64px;
           }
         }
@@ -531,7 +539,7 @@ body {
     }
 
     .form-group {
-      margin:20px 0 35px 0;
+      margin: 20px 0 35px 0;
       text-align: center;
 
       textarea, input {
@@ -541,7 +549,7 @@ body {
         font-size: 20px;
         color: #ffffff;
         background: none;
-        box-sizing:border-box;
+        box-sizing: border-box;
       }
       textarea {
         width: 556px;
@@ -562,7 +570,7 @@ body {
   }
 }
 
-.rule-content{
+.rule-content {
   font-size: 20px;
   line-height: 35px;
   color: #333333;
@@ -575,5 +583,25 @@ body {
     height: 93px;
     width: 100%;
     background: url("../images/wap/rule_logo.png") no-repeat top center;
+  }
+}
+
+.share-overflow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  opacity: 0.7;
+  display: none;
+
+  .content {
+    width: 477px;
+    height: 252px;
+    position: absolute;
+    top: 145px;
+    right: 40px;
+    background: url("../images/wap/overflow_bg.png");
   }
 }

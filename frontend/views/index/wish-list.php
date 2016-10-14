@@ -1,9 +1,11 @@
 <?php
 /* @var $this \yii\web\View */
+use yii\helpers\Url;
+
 ?>
 
 <div class="page-wish-list">
-    <div class="redirect-back"></div>
+    <a class="redirect-back" href="<?= Url::to(['index']) ?>"></a>
     <div class="activity-rule"></div>
     <h3 class="banner-content">心愿墙</h3>
 

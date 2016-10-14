@@ -5,12 +5,13 @@
  * Date: 16/9/8
  * Time: 下午11:23
  */
+use yii\helpers\Url;
 
 ?>
 
 
 <div class="page-reward-list">
-    <div class="redirect-back"></div>
+    <a class="redirect-back" href="<?= Url::to(['index']) ?>"></a>
     <div class="activity-rule"></div>
     <h3 class="banner-content">获奖心愿</h3>
 

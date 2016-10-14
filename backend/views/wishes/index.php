@@ -22,9 +22,9 @@ $this->registerJs($search);
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
-        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+        <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
-    <?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
@@ -40,8 +40,16 @@ $this->registerJs($search);
         ],
         [
             'class' => 'yii\grid\ActionColumn',
+            'buttons' => [
+                'update' => function () {
+                    return null;
+                }, 'view' => function ($url, $model) {
+                    return Html::a("查看详情", ['view', 'id' => $model->id]) . " | ";
+                },
+
+            ]
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -72,7 +80,7 @@ $this->registerJs($search);
                 'exportConfig' => [
                     ExportMenu::FORMAT_PDF => false
                 ]
-            ]) ,
+            ]),
         ],
     ]); ?>
 

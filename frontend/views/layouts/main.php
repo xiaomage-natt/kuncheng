@@ -4,12 +4,25 @@
 /* @var $content string */
 
 use common\helpers\CommonHelper;
+use common\models\base\Accounts;
+use common\models\base\Wishes;
 use frontend\assets\ScreenAsset;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
 ScreenAsset::register($this);
 AppAsset::register($this);
+
+/** @var Wishes $wishes */
+$wishes = Wishes::find()->where(['user_id' => Yii::$app->getUser()->id])->andWhere(['IN', 'status', [Wishes::ACTIVE]])->orderBy('created_at desc')->one();
+
+if(!Yii::$app->getUser()->getIsGuest()) {
+    /** @var Accounts $accounts */
+    $accounts = Accounts::find()->where(['user_id' => Yii::$app->getUser()->id])->one();
+    $openid = $accounts->auth_uid;
+} else {
+    $openid = '';
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -17,6 +30,20 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="openid" content="<?= $openid ?>">
+    <?php
+    if ($wishes) {
+        ?>
+        <meta name="name" content="<?= $wishes->name ?>">
+        <meta name="mobile" content="<?= $wishes->mobile ?>">
+        <?php
+    } else {
+        ?>
+        <meta name="name" content="">
+        <meta name="mobile" content="">
+    <?php
+    }
+    ?>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -31,14 +58,21 @@ AppAsset::register($this);
 
 ?>
 <script>
-    var _title = "微信活动分享标题";
-    var _link = "http://kuncheng.foolbaicai.com";
-    var _imgUrl = "http://kuncheng.foolbaicai.com/resource/images/wap/rule_logo.png";
-    var _desc = "微信分享简介微信分享简介微信分享简介微信分享简介微信分享简介";
+    var _title = "暖暖内涵光，照亮他人的心愿。";
+    <?php
+    if ($wishes) {
+        $url = Yii::$app->urlManager->createAbsoluteUrl(['/index/share-wish', 'id' => $wishes->id]);
+    } else {
+        $url = Yii::$app->urlManager->createAbsoluteUrl(['index/index']);
+    }
+    ?>
+    var _link = "<?= $url ?>";
+    var _imgUrl = "http://kuncheng.foolbaicai.com/resource/images/wap/share.jpeg";
+    var _desc = "TA的心愿需要你的助力";
     if (typeof(wx) != "undefined") {
         wx.config(<?= json_encode(\common\helpers\WechatHelper::jsApiSignature()) ?>);
 
-        wx.error(function(res){
+        wx.error(function (res) {
             alert(JSON.stringify(res));
         });
         function wechatShare() {
@@ -125,6 +159,22 @@ AppAsset::register($this);
     }
 </script>
 <?php $this->endBody() ?>
+
+
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//webtracking.sysmart.cn/";
+        _paq.push(['setTrackerUrl', u+'webtracking.php']);
+        _paq.push(['setSiteId', 10]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'webtracking.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<img style="display:none;" src="http://218.244.145.245/mlog.php?campaign_id=kunchengxuyuan&fromkol=<?php echo Yii::$app->request->get('fromkol'); ?>"/>
+<noscript><p><img src="//webtracking.sysmart.cn/webtracking.php?idsite=10" style="border:0;" alt="" /></p></noscript>
 </body>
 </html>
 <?php $this->endPage() ?>

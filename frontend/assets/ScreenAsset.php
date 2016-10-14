@@ -24,6 +24,7 @@ class ScreenAsset extends AssetBundle
     public $css = [
     ];
     public $js = [
+        'resource/js/fastclick.js',
         'resource/js/screen.js',
         'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'
     ];

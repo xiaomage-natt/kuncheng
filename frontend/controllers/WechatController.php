@@ -49,7 +49,7 @@ class WechatController extends Controller
             $response = \Requests::get('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . Yii::$app->params["wechat"]["appid"] . '&secret=' . Yii::$app->params["wechat"]["secret"] . '&code=' . $_REQUEST["code"] . '&grant_type=authorization_code');
             $response = json_decode($response->body, true);
             if (!isset($response["openid"]) || !isset($response['access_token'])) {
-                $app->redirect("/wechat/oauth_code");
+                throw new HttpException(500, "微信授权失败,请稍后再试");
             }
             $openid = $response["openid"];
             $access_token = $response['access_token'];

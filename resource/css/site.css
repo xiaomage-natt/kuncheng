@@ -17,7 +17,7 @@
 }
 @font-face {
   font-family: 'Huxiaobo';
-  src: url('../fonts/huxiaobo.ttf') format('truetype');
+  src: url('http://odhe92dpz.bkt.clouddn.com/site/resources/fonts/huxiaobo.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -156,19 +156,19 @@ body {
   text-align: center;
 }
 .container .redirect-back {
-  width: 72px;
-  height: 21px;
+  width: 110px;
+  height: 37px;
   position: fixed;
   background: url("../images/wap/redirect_back.png") no-repeat;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
 }
 .container .activity-rule {
   width: 55px;
   height: 165px;
   background: url("../images/wap/rule_bg.png") no-repeat;
   position: fixed;
-  top: 10px;
+  top: 15px;
   right: 0;
 }
 .container .banner-content {
@@ -183,7 +183,19 @@ body {
   display: inline-block;
   width: 100%;
   height: 100%;
-  background: url("../images/wap/index_bg.png") no-repeat left -128px;
+  position: relative;
+  background: url("../images/wap/index_bg.png") no-repeat left top;
+}
+.container .page-index .logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 129px;
+  height: 74px;
+  background: url("../images/wap/logo.png") no-repeat;
+}
+.container .page-index .activity-rule {
+  top: 90px;
 }
 .container .page-index .button-container {
   margin: 778px 0 35px 0;
@@ -728,4 +740,22 @@ body {
   height: 93px;
   width: 100%;
   background: url("../images/wap/rule_logo.png") no-repeat top center;
+}
+.share-overflow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  opacity: 0.7;
+  display: none;
+}
+.share-overflow .content {
+  width: 477px;
+  height: 252px;
+  position: absolute;
+  top: 145px;
+  right: 40px;
+  background: url("../images/wap/overflow_bg.png");
 }

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="page-wish">
-    <div class="redirect-back"></div>
+    <a class="redirect-back" href="<?= Url::to(['index']) ?>"></a>
     <div class="activity-rule"></div>
     <h3 class="banner-content">我的心愿</h3>
 
@@ -25,11 +25,11 @@ use yii\helpers\Url;
             </div>
             <div class="input-group">
                 <label for="name">请留下姓名</label>
-                <input name="name" id="name" type="text">
+                <input name="name" id="name" type="text"  data-target="statistics" data-id="请留下姓名">
             </div>
             <div class="input-group">
                 <label for="mobile">请留下电话</label>
-                <input name="mobile" id="mobile" type="text">
+                <input name="mobile" id="mobile" type="number"  data-target="statistics" data-id="请留下电话">
             </div>
             <div class="input-group">
                 <a href="" class="button submit" id="submit" data-url="<?= Url::to(['submit-wish']) ?>"><span>提交心愿</span></a>

@@ -113,9 +113,8 @@ class WishesController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->updateAttributes([
-            'status' => Wishes::ACTIVE,
+            'status' => Wishes::DELETE
         ]);
-
         return $this->redirect(['index']);
     }
 

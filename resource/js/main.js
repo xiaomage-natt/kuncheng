@@ -138,6 +138,22 @@ $(function () {
         });
     }
 
+
+    $(".num-counter").click(function () {
+        var self = $(this);
+        var param = {
+            id: self.data('id')
+        };
+        param[$("meta[name=csrf-param]").attr("content")] = $("meta[name=csrf-token]").attr("content");
+        $.post(self.data('star-url'), param, function (res) {
+            if (res.code == 1) {
+                self.find('.num').text(parseInt(self.find('.num').text()) + 1);
+            } else {
+                message(res.msg);
+            }
+        }, 'json');
+    });
+
     if (tabContainer) {
         tabContainer.on("click", '.tab', function (res) {
             var self = $(this);
@@ -164,18 +180,106 @@ $(function () {
     $(".activity-rule").click(function () {
 
         var rule_html = $('<div class="rule-content"></div>');
-        rule_html.append('<p>＊每位客户都有1次许愿机会，并有3次机会对留言 心愿进行点赞，也可以给自己的心愿点赞哦；</p>');
+        rule_html.append('<p>＊活动期间，每个微信号都有1次许愿机会，并每天有3次机会对留言心愿进行点赞，也可以给自己的心愿点赞哦；</p>');
         rule_html.append('<p>＊点击 “我的心愿”，留言许下自己的心愿；</p> ');
-        rule_html.append('<p>＊愿望是美好的，我们会对每个心愿附上祝福，含恶 意、不雅的许愿内容我们不接纳，未接纳心愿的用 户可以重新许愿；</p>');
+        rule_html.append('<p>＊愿望是美好的，我们会对每个心愿附上祝福，含恶意、不雅的许愿内容我们不接纳，未接纳心愿的用户可以重新许愿；</p>');
         rule_html.append('<p>＊留言还有机会在以灯光投映的形式出现在昆城广场；</p>');
-        rule_html.append('<p>＊活动时间为9月15日-10月16日，最终选出票数 前十的心愿，送出精美礼品一份；</p>');
+        rule_html.append('<p>＊活动时间为9月15日-10月16日，最终选出票数前十的心愿，送出精美礼品一份；</p>');
         rule_html.append('<p>＊获奖者可凭本人有效身份证件至询问处领取礼品；</p>');
         rule_html.append('<p>＊活动最终解释权归昆城广场所有！</p>');
         rule_html.append('<div class="rule-logo"></div>');
         dialog("活动规则", rule_html);
     });
 
-    $('.redirect-back').click(function () {
-        history.go(-1);
+    //$('.redirect-back').click(function () {
+    //    history.go(-1);
+    //})
+
+    $("#share-button").click(function () {
+        $(".share-overflow").toggle();
+    })
+    $(".share-overflow").click(function () {
+        $(".share-overflow").hide();
+    });
+
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    var fromkol = getParameterByName('fromkol');
+    $.ajax({
+        url: "http://218.244.145.245/mlog.php?campaign_id=kunchengxuyuan&fromkol=" + fromkol,
+
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+
+        // Tell jQuery we're expecting JSONP
+        dataType: "jsonp",
+
+        // Tell YQL what we want and that we want JSON
+        data: {},
+
+        // Work with the response
+        success: function (response) {
+        },
+        error: function (response) {
+        },
+    });
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    $("*[data-target=statistics]").click(function () {
+        var self = $(this);
+
+        var fromkol = getParameterByName('fromkol');
+        $.ajax({
+            url: "/index/statistics",
+
+            type: 'POST',
+
+            // The name of the callback parameter, as specified by the YQL service
+            //jsonp: "callback",
+
+            // Tell jQuery we're expecting JSONP
+            //dataType: "jsonp",
+
+            // Tell YQL what we want and that we want JSON
+            data: {
+                fromkol: fromkol,
+                email: "",
+                CZ_activity_name: self.data("id"),
+                CZ_created: new Date().Format("yyyy-MM-dd hh:mm:ss"),
+                openid: $("meta[name=openid]").attr("content"),
+                name: $("meta[name=name]").attr("content"),
+                mobile: $("meta[name=mobile]").attr("content")
+            },
+
+            // Work with the response
+            success: function (response) {
+            },
+            error: function (response) {
+            },
+        });
     })
 });

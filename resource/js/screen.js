@@ -34,3 +34,10 @@ if (/Android (\d+\.\d+)/.test(ua)) {
 } else {
     document.write('<meta name="viewport" content="width=640, user-scalable=no,target-densitydpi=device-dpi">');
 }
+
+
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}

@@ -36,11 +36,14 @@ class CommonHelper
      * @param string $user_name 姓名
      * @return string 格式化后的姓名
      */
-    public static function format_name($user_name){
-        $strlen     = mb_strlen($user_name, 'utf-8');
-        $firstStr     = mb_substr($user_name, 0, 1, 'utf-8');
-        $lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
-        return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
+    public static function format_name($user_name)
+    {
+        $strlen = mb_strlen($user_name, 'utf-8');
+        $firstStr = mb_substr($user_name, 0, 1, 'utf-8');
+        $lastStr = mb_substr($user_name, -1, 1, 'utf-8');
+        $multiplier = mb_strlen($user_name, 'utf-8') - 1;
+        $multiplier1 = $strlen - 2;
+        return $strlen == 2 ? $firstStr . str_repeat('*', max(0, $multiplier)) : $firstStr . str_repeat("*", max(0, $multiplier1)) . $lastStr;
     }
 
     public static function isWeixin()

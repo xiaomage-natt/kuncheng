@@ -5,7 +5,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="page-my-wish">
-    <div class="redirect-back"></div>
+    <a class="redirect-back" href="<?= Url::to(['index']) ?>"></a>
     <div class="activity-rule"></div>
     <h3 class="banner-content">我的心愿</h3>
 
