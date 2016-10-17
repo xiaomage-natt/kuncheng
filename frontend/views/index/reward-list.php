@@ -23,20 +23,26 @@ use yii\helpers\Url;
         <div class="body">
             <?php
             /** @var \common\models\base\Wishes[] $models */
-            foreach ($models as $model) {
+            foreach ($models as $k => $model) {
                 ?>
                 <div class="item">
                     <div class="left">
                         <div class="title">
-                            <span class="name"><?= \common\helpers\CommonHelper::format_name($model->name) ?></span><span class="mobile"><?= \common\helpers\CommonHelper::format_mobile($model->mobile) ?></span>
+                            <span
+                                class="name"><?= \common\helpers\CommonHelper::format_name($model->name) ?></span><span
+                                class="mobile"><?= \common\helpers\CommonHelper::format_mobile($model->mobile) ?></span>
                         </div>
                         <div class="content">
                             <?= $model->content ?>
                         </div>
                     </div>
-                    <div class="right"><span class="good"></span><span class="num"><?= $model->star ?></span></div>
+                    <div class="right">
+                        <span class="star"><?= $k + 1 ?></span>
+                        <span class="good"></span>
+                        <span class="num"><?= $model->star ?></span>
+                    </div>
                 </div>
-            <?php
+                <?php
             }
             ?>
 

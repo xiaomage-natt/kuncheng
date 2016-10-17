@@ -79,7 +79,12 @@ class IndexController extends Controller
     {
         $end_date = Yii::$app->params['end_date'];
         if (date("Y-m-d") > $end_date) {
-            $query = Wishes::find()->andWhere(['IN', 'status', [Wishes::ACTIVE]])->limit(10);
+            $query = Wishes::find()
+                ->select(['name,mobile,content,count(1) as star'])
+                ->innerJoin("wish_stars", "wish_stars.wish_id=wishes.id and wish_stars.created_at<=:time", [':time' => date("Y-m-d 23:59:59", strtotime(Yii::$app->params['end_date']))])
+                ->groupBy("wishes.id")
+                ->andWhere(['IN', 'wishes.status', [Wishes::ACTIVE]])
+                ->limit(10);
             $query->orderBy('star desc');
             /** @var Wishes[] $wishes */
             $wishes = $query->all();
