@@ -13,9 +13,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'defaultRoute' => 'wishes',
+    'defaultRoute' => 'beidema-form',
     'language' => 'zh-CN',
     'modules' => [
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+
         'gridview' => [
             'class' => '\kartik\grid\Module',
             // see settings on http://demos.krajee.com/grid#module

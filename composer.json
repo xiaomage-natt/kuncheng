@@ -21,7 +21,8 @@
         "light/yii2-swagger": "^1.0",
         "mootensai/yii2-enhanced-gii": "dev-master",
         "rmccue/requests": "^1.6",
-        "kartik-v/yii2-datecontrol": "^1.9"
+        "kartik-v/yii2-datecontrol": "^1.9",
+        "dektrium/yii2-rbac": "1.0.0-alpha@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -30,7 +31,8 @@
         "yiisoft/yii2-faker": "*"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "discard-changes": true
     },
     "extra": {
         "asset-installer-paths": {

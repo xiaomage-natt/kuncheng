@@ -35,8 +35,9 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => '用户管理', 'url' => ['/users/index']],
-        ['label' => '心愿管理', 'url' => ['/wishes/index']],
+//        ['label' => '用户管理', 'url' => ['/users/index']],
+//        ['label' => '心愿管理', 'url' => ['/wishes/index']],
+        ['label' => '贝德玛', 'url' => ['/beidema-form/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -54,6 +55,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+//    echo \dektrium\rbac\widgets\Menu::widget([
+//        'options' => ['class' => 'navbar-nav navbar-right'],
+//        'items' => [],
+//    ]);
     NavBar::end();
     ?>
 

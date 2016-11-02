@@ -4,7 +4,7 @@ lock '3.5.0'
 set :application, 'yii'
 #set :repo_url, 'git@example.com:me/my_repo.git'
 set :scm, :copy
-set :exclude_dir, "{.svn,.git,vendor,lib,Gemfile,Gemfile.*,Capfile,Uploads,runtime,tests}"
+set :exclude_dir, "{.svn,.git,vendor,lib,Gemfile,Gemfile.*,Capfile,Uploads,runtime,tests,}"
 
 
 # Default branch is :master
